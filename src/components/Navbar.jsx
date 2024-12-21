@@ -13,7 +13,8 @@ const Navbar = () => {
 	const [isFeatureVisible, setIsFeatureVisible] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-	const toggleFeatureVisibility = () => {
+	const toggleFeatureVisibility = (event) => {
+		event.stopPropagation(); // Prevent the click event from propagating to document
 		setIsFeatureVisible((prev) => !prev);
 	};
 
@@ -34,8 +35,12 @@ const Navbar = () => {
 
 	useEffect(() => {
 		const handleClickOutside = (event) => {
-			if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-				setIsFeatureVisible(false);  // Close the dropdown
+			if (
+				dropdownRef.current &&
+				!dropdownRef.current.contains(event.target) &&
+				event.target.getAttribute('data-toggle') !== 'features-button'
+			) {
+				setIsFeatureVisible(false); // Close the dropdown
 			}
 		};
 
@@ -56,9 +61,21 @@ const Navbar = () => {
 					{/* Desktop Menu */}
 					<div className='hidden md:flex items-center gap-5 relative'>
 						<Link to='/' className={isActive('/') ? 'font-semibold' : 'font-normal'}>Home</Link>
-						<p className='cursor-pointer' onClick={toggleFeatureVisibility}>Features</p>
+						<p
+							className='cursor-pointer flex items-center gap-1'
+							data-toggle='features-button' // Add this attribute
+							onClick={(e) => toggleFeatureVisibility(e)}
+						>
+							Features <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1.01001 1L5.01001 5L9.01001 1" stroke="#1F1F1F" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+
+						</p>
 						<Link to='/pricing' className={isActive('/pricing') ? 'font-semibold' : 'font-normal'}>Pricing</Link>
-						<p>Solutions</p>
+						<p className='flex items-center gap-1 cursor-pointer'>Solutions <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M1.01001 1L5.01001 5L9.01001 1" stroke="#1F1F1F" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+						</p>
 					</div>
 					<div className='pl-4 space-x-3 hidden md:block'>
 						<Button intent={'ghost'} className='py-1'>Login</Button>

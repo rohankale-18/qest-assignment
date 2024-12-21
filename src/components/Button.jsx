@@ -9,9 +9,9 @@ const buttonStyles = cva(
 	{
 		variants: {
 			intent: {
-				primary: 'bg-[#F54F35] border border-[#F54F35] rounded-md text-white hover:bg-[#F54F35]/95',
+				primary: 'bg-[#F54F35] border border-[#F54F35] rounded-md text-white hover:bg-[#DC472F]',
 				secondary: 'bg-gray-500 text-white hover:bg-gray-200/50',
-				ghost: 'bg-transparent ring-2 ring-[#E5E7EB] rounded-md shadow-md',
+				ghost: 'bg-white ring-2 ring-[#E5E7EB] rounded-md shadow-md hover:ring-[#F54F35] transition-all duration-200 ease-in-out',
 				opd: 'flex text-xs bg-white px-3 py-1.5 rounded-3xl items-center gap-1 text-[#22436D] ring-[0.5px] ring-[#22436D] font-medium hover:ring-0 hover:shadow-md transition-all duration-200 ease-in-out'
 			},
 			size: {

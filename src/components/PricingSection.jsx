@@ -30,7 +30,7 @@ const PricingSection = () => {
 				<p>Running a <strong>Growth Business</strong> or <strong>Enterprise</strong>? Let's connect - </p>
 				<Button className={'py-0 px-2 rounded-xl w-fit'}>Talk to Sales</Button>
 			</div>
-			<div className="flex justify-center items-center gap-3 font-semibold">
+			<div className="flex justify-center items-center gap-3 pb-5 font-semibold">
 				<p>Monthly</p>
 				<label className="toggle-switch">
 					<input type="checkbox" />
